@@ -246,14 +246,7 @@ charadex.page.gallery = {
     toggle: true,
   },
 
-    }
-
-  }
-
-};
-
-
-
+    };
 
 
 /* Staff
