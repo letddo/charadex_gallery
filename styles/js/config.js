@@ -254,13 +254,13 @@ charadex.page.loggallery = {
 charadex.page.staff = {
 
   sheetPage: charadex.sheet.pages.staff,
-  sitePage: 'inventories',
+  sitePage: 'staff',
   dexSelector: 'charadex',
-  profileProperty: 'username',
+  profileProperty: '닉네임',
 
   sort: {
     toggle: false,
-    key: "username",
+    key: "닉네임",
     order: "asc",
     parameters: []
   },
