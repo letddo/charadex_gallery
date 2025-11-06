@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<script>
+  // 이 페이지는 loggallery 모드 + '갤러리' 시트 사용
+  window.CHARADEX_PAGE = 'loggallery';
+  window.MASTERLIST_SHEET = '갤러리';
+</script>
 <head>
 
   <meta charset="UTF-8">
@@ -12,7 +16,7 @@
   <!-- ----------------------------------------------------------------- -->
   <link rel="shortcut icon" type="image/png" href="assets/favicon.png" />
   <title>Charadex Masterlist</title>
-  <meta name="title" content="Charadex loggallery"sp />
+  <meta name="title" content="Charadex Masterlist"sp />
   <meta name="type" content="website" />
   <meta name="url" content="https://www.charadex.com/" />
   <meta name="image" content="assets/meta.png" />
@@ -65,7 +69,7 @@
   <-- Main List
   <-------------------------------------------------------------------- -->
   <div class="container" id="main-container">
-    <div id="charadex-loggallery">
+    <div id="charadex-gallery">
 
       <!-- Top Card Container
       <!-- ----------------------------------------------------------------- -->
@@ -73,7 +77,7 @@
 
         <!-- Title
         <!-- --------------------------------------------------------------- -->
-        <h3 class="mb-0"><a href="masterlist.html">갤러리</a></h3>
+        <h3 class="mb-0"><a href="masterlist.html">마스터리스트</a></h3>
 
         <!-- Faux Folders
         <!-- --------------------------------------------------------------- -->
@@ -178,18 +182,18 @@
 
     <!-- Gallery Items
     <!-- --------------------------------------------------------------- -->
-    <div class="col-lg-3 col-sm-6 p-2" id="charadex-loggallery-item">
+    <div class="col-lg-3 col-sm-6 p-2" id="charadex-gallery-item">
       <div class="card h-100">
 
         <!-- Header -->
         <div class="card-header text-center">
           <h5 class="mb-0">
-            <a class="loggalleryid loggallerylink" href=""></a>
+            <a class="profileid profilelink" href=""></a>
           </h5>
         </div>
 
         <!-- Image-->
-        <div class="card-body cd-loggallery-card d-flex flex-fill">
+        <div class="card-body cd-gallery-card d-flex flex-fill">
           <img class="image img-fluid m-auto" src="" >
         </div>
 
@@ -209,7 +213,7 @@
 
         <!-- Header -->
         <div class="card-header p-4 text-center">
-          <h3 class="mb-0 pr-2"><a class="loggallerylink loggalleryid"></a></h3> 
+          <h3 class="mb-0 pr-2"><a class="profilelink profileid"></a></h3> 
           <div class="text-muted">(#<span class="id"></span>)</div>
         </div>
 
@@ -226,7 +230,7 @@
           <!-- Main Profile
           <!-- ----------------------------------------------------------- -->
           <div class="tab-pane fade active show" id="profile" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-            <h4 class="text-primary">정보</h4>
+            <h4 class="text-primary">프로필</h4>
             <div class="row no-gutters m-n2">
 
               <div class="col-md-6 p-2">
@@ -234,28 +238,28 @@
 
                   <!-- Item -->
                   <div class="d-flex no-gutters mb-2">
-                    <b class="text-muted col-md-5 col-6">카테고리</b>
-                    <div class="px-4 cd-text-pre 카테고리"></div>
+                    <b class="text-muted col-md-5 col-6">종족</b>
+                    <span class="species"></span>
                   </div>
     
                   <!-- Item -->
                   <div class="d-flex no-gutters mb-2">
-                    <b class="text-muted col-md-5 col-6">작품 유형</b>
-                    <div class="px-4 cd-text-pre 작품 유형"></div>
+                    <b class="text-muted col-md-5 col-6">등급</b>
+                    <span class="등급"></span>
                   </div>
     
                   <!-- Item -->
                   <div class="d-flex no-gutters mb-2">
-                    <b class="text-muted col-md-5 col-6">프롬프트</b>
-                    <div class="px-4 cd-text-pre 프롬프트"></div>
+                    <b class="text-muted col-md-5 col-6">디자인 타입</b>
+                    <span class="디자인타입"></span>
                   </div>
                   
                   <hr>
 
                   <!-- Item -->
                   <div>
-                    <b class="text-muted">설명</b>
-                    <div class="px-4 cd-text-pre 설명"></div>
+                    <b class="text-muted">특성</b>
+                    <div class="px-4 cd-text-pre 특성 cd-traits-scroll"></div>
                   </div>
 
                 </div>
@@ -266,8 +270,8 @@
 
                   <!-- Item -->
                   <div class="d-flex no-gutters mb-2">
-                    <b class="text-muted col-md-5 col-6">작성자</b>
-                    <a class="작성자 ownerlink"></a>
+                    <b class="text-muted col-md-5 col-6">소유자</b>
+                    <a class="소유자 ownerlink"></a>
                   </div>
     
                   <!-- Item -->
@@ -278,37 +282,42 @@
     
                   <!-- Item -->
                   <div class="d-flex no-gutters mb-2">
-                    <b class="text-muted col-md-5 col-6">협업자</b>
-                    <a class="협업자 designerlink"></a>
+                    <b class="text-muted col-md-5 col-6">디자인</b>
+                    <a class="디자인 designerlink"></a>
                   </div>
 
                   <hr>
     
                   <!-- Item -->
                   <div class="d-flex no-gutters mb-2">
-                    <b class="text-muted col-md-5 col-6">업로드 날짜</b>
-                    <div class="px-4 cd-text-pre 업로드 날짜"></div>
+                    <b class="text-muted col-md-5 col-6">가치</b>
+                    <span><span class="가치"></span>₩</span>
+                  </div>
+    
+                  <!-- Item -->
+                  <div class="d-flex no-gutters mb-2">
+                    <b class="text-muted col-md-5 col-6">상태</b>
+                    <span class="상태"></span>
                   </div>
 
                   <hr>
                   
                   <!-- Item -->
                   <div>
-                    <b class="text-muted">등장 캐릭터</b>
-                    <div class="px-4 cd-text-pre 등장 캐릭터"></div>
+                    <b class="text-muted">정보</b>
+                    <div class="px-4 cd-text-pre 정보"></div>
                   </div>
 
                 </div>
               </div>
+
             </div>
           </div>
           
-     
-          </div>
-
+          
           <!-- Where to Update -->
           <div class="card bg-faded py-2 px-3 mt-3 small text-center">
-            <b>이 항목을 업데이트해야 하는 경우 기존 제출 항목을 수정하세요.</b>
+            <b>이 항목을 업데이트해야 하는 경우 <a href="">여기</a>을 클릭하세요.</b>
           </div>
 
         </div>
@@ -332,7 +341,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
   <!-- Charadex Script -->
-  <script src="styles/js/pages/masterlist.js" type="module"></script>
+  <script src="styles/js/pages/loggallery.js" type="module"></script>
   <script src="styles/js/pages/base.js" type="module"></script>
 
 
