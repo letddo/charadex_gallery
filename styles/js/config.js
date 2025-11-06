@@ -49,7 +49,7 @@ charadex.sheet = {
     species: ['전체', 'Dog', 'Cat', 'Bunny'],
     itemTypes: ['전체', 'Currency', 'MYO Slot', 'Pet', 'Trait', 'Misc'],
     traitTypes: ['전체', 'Ears', 'Eyes', 'Body', 'Limbs', 'Tails', 'Misc', 'Mutations'],
-    loggallerytypes: ['전체', '일반', '프롬프트']
+    loggalleryTypes: ['전체', '일반', '프롬프트']
 
   }
 
@@ -214,7 +214,7 @@ charadex.page.loggallery = {
 
   sheetPage: charadex.sheet.pages.loggallery,
   sitePage: 'loggallery',
-  dexSelector: 'loggallery',
+  dexSelector: 'charadex',
   profileProperty: '갤러리',
 
   sort: {
