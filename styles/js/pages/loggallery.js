@@ -24,3 +24,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             charadex.page.loggallery.relatedData['갤러리내역']
           );
         }
+      }
+
+    }
+  );
+  
+  charadex.tools.loadPage('.softload', 500);
+  
+});
