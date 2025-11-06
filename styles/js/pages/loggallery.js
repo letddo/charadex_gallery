@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (charadex.tools.checkArray(listData.loggalleryArray[0]['갤러리내역'])) {
           let logs = await charadex.initialize.page(
             listData.loggalleryArray[0]['갤러리내역'],
-            charadex.page.loggallery.relatedData['갤러리내역']
+            charadex.page.loggallery.relatedData['갤러리 내역']
           );
         }
       }
