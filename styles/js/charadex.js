@@ -235,13 +235,19 @@ document.querySelectorAll('.cd-loggallery-image-container').forEach(el => {
   const type = el.dataset.type;
   const iframe = el.querySelector('iframe');
   const img = el.querySelector('img');
-  
+
   if (type === '글') {
-    if (iframe) iframe.style.display = 'block';
+    if (iframe && el.dataset.textlink) {
+      iframe.src = el.dataset.textlink;
+      iframe.style.display = 'block';
+    }
     if (img) img.style.display = 'none';
   } else if (type === '그림') {
+    if (img && el.dataset.src) {
+      img.src = el.dataset.src;
+      img.style.display = 'block';
+    }
     if (iframe) iframe.style.display = 'none';
-    if (img) img.style.display = 'block';
   }
 });
 </script>
