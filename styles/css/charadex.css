@@ -706,15 +706,13 @@ p:last-child {
 }
 
 
-/* 글일 땐 이미지 완전 차단, iframe만 표시 */
-#charadex-profile[data-type="글"] img.image {
-  display: none !important;
-}
-
-/* 글이 아닐 땐 이미지만 표시 */
-#charadex-profile[data-type="글"] iframe {
-  display: none !important;
-  }
+#charadex-profile iframe {
+  display: block;
+  margin: 0 auto;
+  border: 0;
+  width: 80%;
+  height: 80vh;
+  
 
 /* Traits */
 .cd-traits-scroll {
