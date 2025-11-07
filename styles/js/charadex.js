@@ -241,29 +241,26 @@ window.addEventListener('load', () => {
 if (typeof window !== 'undefined') {
   window.addEventListener('load', () => {
     setTimeout(() => {
-      const profile = document.querySelector('#charadex-profile');
-      if (!profile) return;
-
-      // 현재 표시 중인 데이터 가져오기
+      // 현재 표시 중인 실제 데이터
       const data = window.charadexCurrentData;
-      if (!data) return;
+      const profile = document.querySelector('#charadex-profile');
+      if (!data || !profile) return;
 
       const type = data['data-type'];
       const link = data['Textlink'];
       const iframe = profile.querySelector('iframe');
-
       if (!iframe) return;
+
       profile.setAttribute('data-type', type);
 
-      // 타입별 표시
       if (type === '글' && link) {
         iframe.src = link;
         iframe.style.display = 'block';
       } else {
-        iframe.removeAttribute('src');
+        iframe.src = '';
         iframe.style.display = 'none';
       }
-    }, 500); // 데이터가 로드된 후 실행
+    }, 500);
   });
 }
 
