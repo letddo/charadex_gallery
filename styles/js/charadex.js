@@ -237,41 +237,31 @@ window.addEventListener('load', () => {
 });
 
 
-/* 글/그림 분리 - 현재 표시 중인 프로필 데이터 기준 */
-document.addEventListener('DOMContentLoaded', () => {
-  const profile = document.querySelector('#charadex-profile');
-  if (!profile) return;
+// === 글이면 이미지+iframe, 그림이면 이미지만 (현재 프로필 기준) ===
+if (typeof window !== 'undefined') {
+  window.addEventListener('load', () => {
+    // loggallery.js의 listCallback에서 저장한 "현재 프로필 데이터"
+    const data = window.charadexCurrentData;
+    const profile = document.querySelector('#charadex-profile');
+    if (!data || !profile) return;
 
-  // 실제 표시 중인 데이터 가져오기
-  const data = window.charadexCurrentData;
-  if (!data) return;
+    const type = (data['data-type'] || '').trim();
+    const link = (data['Textlink'] || '').trim();
+    const iframe = profile.querySelector('iframe');
 
-  const type = (data['data-type'] || '').trim();
-  const link = (data['Textlink'] || '').trim();
+    // CSS가 인식하도록 data-type 부여
+    profile.setAttribute('data-type', type);
 
-  // 타입 설정
-  profile.setAttribute('data-type', type);
-
-  // 요소 찾기
-  const iframe = profile.querySelector('iframe');
-  const img = profile.querySelector('img.image');
-
-  // iframe 링크 처리
-  if (iframe) {
-    if (type === '글' && link) {
-      iframe.src = link;
+    // 글일 때만 iframe src 채우고 보이게
+    if (type === '글' && iframe) {
+      if (link) iframe.src = link;
       iframe.style.display = 'block';
-    } else {
-      iframe.src = '';
+    } else if (iframe) {
+      iframe.removeAttribute('src');
       iframe.style.display = 'none';
     }
-  }
-
-  // 이미지 표시 처리
-  if (img) {
-    img.style.display = (type === '글') ? 'none' : 'block';
-  }
-});
+  });
+}
 
 export { charadex };
 
