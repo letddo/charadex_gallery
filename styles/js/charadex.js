@@ -225,7 +225,7 @@ charadex.initialize.groupGallery = async function (config, dataArray, groupBy, c
 
 };
 
-// === 글로그면 iframe 추가, 아닐땐 공백도 제거 ===
+// === 글로그면 iframe만 on ===
 if (typeof window !== 'undefined') {
   window.addEventListener('load', () => {
     const data = charadex?.sheet?.pages?.loggallery;
@@ -236,25 +236,13 @@ if (typeof window !== 'undefined') {
     const profile = document.querySelector('#charadex-profile');
     if (!profile) return;
 
-    // 기존에 있던 iframe 싹 제거
-    profile.querySelectorAll('iframe.added-iframe').forEach(el => el.remove());
+    // CSS가 작동하도록 data-type 부여
+    profile.setAttribute('data-type', type);
 
-    // 글일 때만 새로 추가
-    if (type === '글' && link) {
-      const iframe = document.createElement('iframe');
-      iframe.src = link;
-      iframe.className = 'added-iframe';
-      iframe.style.border = '0';
-      iframe.style.width = '80%';
-      iframe.style.height = '80vh';
-      iframe.style.margin = '0 auto';
-      iframe.style.display = 'block';
-      profile.appendChild(iframe);
-    } else {
-      // 글 아닐 때 iframe/여백 제거
-      const imgs = profile.querySelectorAll('img.image');
-      imgs.forEach(img => (img.style.marginBottom = '0'));
-      profile.style.minHeight = 'auto';
+    // 글이면 iframe 세팅
+    if (type === '글') {
+      const iframe = profile.querySelector('iframe');
+      if (iframe && link) iframe.src = link;
     }
   });
 }
