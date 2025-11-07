@@ -1,21 +1,19 @@
 /* ==================================================================== */
 /* Import Charadex
-======================================================================= */
+/* ==================================================================== */
 import { charadex } from './list.js';
 
 /* ==================================================================== */
 /* Initialize
 /* ==================================================================== */
-
 /* This is where the real magic happens
-    
-======================================================================= */
+/* ==================================================================== */
 charadex.initialize = {};
 
 
 /* ==================================================================== */
 /* Page
-======================================================================= */
+/* ==================================================================== */
 charadex.initialize.page = async (dataArr, config, dataCallback, listCallback, customPageUrl = false) => {
 
   if (!config) return console.error('No configuration added.');
@@ -146,10 +144,9 @@ charadex.initialize.page = async (dataArr, config, dataCallback, listCallback, c
 }
 
 
-
 /* ==================================================================== */
 /* Grouped Gallery (Mostly for inventory items)
-======================================================================= */
+/* ==================================================================== */
 charadex.initialize.groupGallery = async function (config, dataArray, groupBy, customPageUrl = false) {
 
   /* Check the Configs */
@@ -226,8 +223,9 @@ charadex.initialize.groupGallery = async function (config, dataArray, groupBy, c
 
   return handleGallery();
 
+};
 
-  /* 글 그림 분리
+ /* 글 그림 분리
   ======================================================================= */
   document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.cd-loggallery-image-container').forEach(function (el) {
@@ -246,4 +244,3 @@ charadex.initialize.groupGallery = async function (config, dataArray, groupBy, c
   });
 
 export { charadex };
-
