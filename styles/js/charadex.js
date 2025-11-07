@@ -225,29 +225,28 @@ charadex.initialize.groupGallery = async function (config, dataArray, groupBy, c
 
 };
 
- /* 글 그림 분리
-  ======================================================================= */
+/* 글 그림 분리
+======================================================================= */
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.cd-loggallery-image-container').forEach(el => {
-    const type = el.dataset.type;
+    const type = el.dataset.type?.trim();
     const iframe = el.querySelector('iframe');
     const img = el.querySelector('img');
 
+    // 기본적으로 전부 숨김
+    if (iframe) iframe.style.display = 'none';
+    if (img) img.style.display = 'none';
+
     if (type === '글') {
+      // 글일 때: iframe만 표시
       if (iframe && iframe.src && iframe.src.trim() !== '') {
         iframe.style.display = 'block';
-      } else if (iframe) {
-        iframe.style.display = 'none';
       }
-      if (img) img.style.display = 'none';
-    } 
-    else if (type === '그림') {
+    } else {
+      // 글이 아닐 때: 이미지 표시
       if (img && img.src && img.src.trim() !== '') {
         img.style.display = 'block';
-      } else if (img) {
-        img.style.display = 'none';
       }
-      if (iframe) iframe.style.display = 'none';
     }
   });
 });
