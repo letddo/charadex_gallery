@@ -226,13 +226,11 @@ charadex.initialize.groupGallery = async function (config, dataArray, groupBy, c
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (charadex.sheet.pages.loggallery['data-type'] === '글') {
-    const profile = document.querySelector('#charadex-profile');
-    if (profile) {
-      profile.setAttribute('data-type', '글');
-    }
-  }
+  const type = charadex.sheet.pages.loggallery['data-type'];
+  const profile = document.querySelector('#charadex-profile');
+  if (profile) profile.setAttribute('data-type', type);
 });
+
 
 export { charadex };
 
