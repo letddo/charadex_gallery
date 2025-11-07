@@ -213,10 +213,32 @@
         </div>
 
         <!-- Image -->
-        <div class="cd-loggallery-image-container p-md-5 p-4 text-center" >
-          <img class="image img-fluid" src="">
-        </div>
+        <script>
+  // 여러 카드가 있어도 모두 처리 가능
+  document.querySelectorAll('.cd-loggallery-image-container').forEach(box => {
+    const type = (box.dataset.type || '').trim();          // 작품유형: '글' 또는 '그림'
+    const textlink = (box.dataset.textlink || '').trim();  // Textlink (iframe용)
+    const imgSrc = (box.dataset.src || '').trim();         // 이미지 경로
+    const imgEl = box.querySelector('img');
 
+    if (type === '글' && textlink) {
+      // 글이면 iframe으로 교체
+      if (imgEl) imgEl.remove();
+      const iframe = document.createElement('iframe');
+      iframe.src = textlink;                 // 이미 embedded=true 포함
+      iframe.width = '80%';
+      iframe.height = '80%';
+      iframe.loading = 'lazy';
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.style.border = '0';
+      box.appendChild(iframe);
+    } else {
+      // 그림(기본): 이미지 출력
+      if (imgEl && imgSrc) imgEl.src = imgSrc;
+    }
+  });
+      </script>
+      
 
         <!-- Main Info
         <!-- ----------------------------------------------------------- -->
