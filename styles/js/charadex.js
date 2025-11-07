@@ -225,35 +225,6 @@ charadex.initialize.groupGallery = async function (config, dataArray, groupBy, c
 
 };
 
-// === 글이면 이미지+iframe, 그림이면 이미지만 ===
-if (typeof window !== 'undefined') {
-  window.addEventListener('load', () => {
-    const data = charadex?.sheet?.pages?.loggallery;
-    if (!data) return;
-
-    const type = data['data-type'];
-    const link = data['Textlink'];
-    const profile = document.querySelector('#charadex-profile');
-    if (!profile) return;
-
-    profile.setAttribute('data-type', type);
-
-    // iframe 요소 찾기
-    const iframe = profile.querySelector('iframe');
-    if (!iframe) return;
-
-    // 타입별 표시
-    if (type === '글') {
-      // 글 → iframe도 보이게 + 링크 세팅
-      iframe.src = link;
-      iframe.style.display = 'block';
-    } else {
-      // 그림 → iframe 숨김
-      iframe.removeAttribute('src');
-      iframe.style.display = 'none';
-    }
-  });
-}
 
 window.addEventListener('load', () => {
   const data = charadex?.sheet?.pages?.loggallery;
@@ -264,6 +235,37 @@ window.addEventListener('load', () => {
 
   iframe.src = data['Textlink']; // ← 글 주소 자동 연결
 });
+
+
+// === 글이면 이미지+iframe, 그림이면 이미지만 ===
+if (typeof window !== 'undefined') {
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const profile = document.querySelector('#charadex-profile');
+      if (!profile) return;
+
+      // 현재 표시 중인 데이터 가져오기
+      const data = window.charadexCurrentData;
+      if (!data) return;
+
+      const type = data['data-type'];
+      const link = data['Textlink'];
+      const iframe = profile.querySelector('iframe');
+
+      if (!iframe) return;
+      profile.setAttribute('data-type', type);
+
+      // 타입별 표시
+      if (type === '글' && link) {
+        iframe.src = link;
+        iframe.style.display = 'block';
+      } else {
+        iframe.removeAttribute('src');
+        iframe.style.display = 'none';
+      }
+    }, 500); // 데이터가 로드된 후 실행
+  });
+}
 
 export { charadex };
 
