@@ -247,5 +247,3 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-
-<script type="module" src="charadex.js"></script>
