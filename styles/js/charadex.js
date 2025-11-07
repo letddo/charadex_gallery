@@ -225,19 +225,26 @@ charadex.initialize.groupGallery = async function (config, dataArray, groupBy, c
 
 };
 
+// 글이면 프로필 이미지 완전 차단, 글이 아니면 이미지 표시
 document.addEventListener('DOMContentLoaded', () => {
-  const type = charadex.sheet.pages.loggallery['data-type'];
-  const img = document.querySelector('#charadex-profile img.image');
-  const iframe = document.querySelector('#charadex-profile iframe');
+  const isText = charadex.sheet.pages.loggallery['data-type'] === '글';
+  const prof = document.querySelector('#charadex-profile');
+  const img  = prof.querySelector('img.image');
+  const ifr  = prof.querySelector('iframe');
 
-  img.style.display = iframe.style.display = 'none';
-
-  if (type === '글') {
-    iframe.src = charadex.sheet.pages.loggallery.Textlink;
-    iframe.style = 'display:block;margin:0 auto;border:0;width:80%;height:80vh;';
+  if (isText) {
+    // 이미지가 다시 살아나는 걸 막기 위해 src/srcset 제거 + !important 숨김
+    if (img) { img.removeAttribute('src'); img.removeAttribute('srcset'); img.style.display = 'none'; }
+    if (!document.getElementById('cd-kill-img')) {
+      const s = document.createElement('style');
+      s.id = 'cd-kill-img';
+      s.textContent = '#charadex-profile img.image{display:none!important}';
+      document.head.appendChild(s);
+    }
+    if (ifr) { ifr.src = charadex.sheet.pages.loggallery.Textlink || ''; ifr.style.display = 'block'; }
   } else {
-    img.src = charadex.sheet.pages.loggallery.Image;
-    img.style = 'display:block;margin:0 auto;';
+    if (ifr) { ifr.removeAttribute('src'); ifr.style.display = 'none'; }
+    if (img) { img.src = charadex.sheet.pages.loggallery.Image || img.src; img.style.display = 'block'; }
   }
 });
 
