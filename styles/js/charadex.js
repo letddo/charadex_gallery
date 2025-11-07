@@ -228,22 +228,25 @@ charadex.initialize.groupGallery = async function (config, dataArray, groupBy, c
 /* 글 그림 분리
 ======================================================================= */
 document.addEventListener('DOMContentLoaded', () => {
+  // 시트에서 설정된 작품 유형 불러오기
+  const workType = charadex?.sheet?.options?.['data-type']?.trim?.() || '';
+
   document.querySelectorAll('.cd-loggallery-image-container').forEach(el => {
-    const type = el.dataset.type?.trim();
     const iframe = el.querySelector('iframe');
     const img = el.querySelector('img');
 
-    // 기본적으로 전부 숨김
+    // 일단 모두 숨김
     if (iframe) iframe.style.display = 'none';
     if (img) img.style.display = 'none';
 
-    if (type === '글') {
-      // 글일 때: iframe만 표시
+    // 작품 유형이 '글'인 경우 iframe 표시
+    if (workType === '글') {
       if (iframe && iframe.src && iframe.src.trim() !== '') {
         iframe.style.display = 'block';
       }
-    } else {
-      // 글이 아닐 때: 이미지 표시
+    } 
+    // 작품 유형이 '글'이 아닌 경우 (예: 그림, 사진 등) 이미지 표시
+    else {
       if (img && img.src && img.src.trim() !== '') {
         img.style.display = 'block';
       }
