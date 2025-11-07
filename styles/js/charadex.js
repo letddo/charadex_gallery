@@ -225,34 +225,50 @@ charadex.initialize.groupGallery = async function (config, dataArray, groupBy, c
 
 };
 
-/* 글 그림 분리
-======================================================================= */
+/* 글/그림 분리 - 시트 값 기준으로 강제 토글 */
 document.addEventListener('DOMContentLoaded', () => {
-  const workType = charadex?.sheet?.options?.['data-type']?.trim?.() || '';
-  const textlink = charadex?.sheet?.options?.Textlink?.trim?.() || '';
+  const workType  = (charadex?.sheet?.options?.['data-type'] || '').trim();   // 작품유형
+  const textlink0 = (charadex?.sheet?.options?.Textlink    || '').trim();     // 글 문서 링크
+
+  // Google Docs 링크면 embedded=true 보장
+  const toEmbedded = (url) => {
+    if (!url) return '';
+    try {
+      const u = new URL(url, location.origin);
+      if (u.hostname.includes('docs.google.com')) {
+        if (!u.searchParams.has('embedded')) u.searchParams.set('embedded','true');
+      }
+      return u.toString();
+    } catch { return url; }
+  };
 
   document.querySelectorAll('.cd-loggallery-image-container').forEach(el => {
     const iframe = el.querySelector('iframe');
-    const img = el.querySelector('img');
+    const img    = el.querySelector('img');
 
     // 기본: 모두 숨김
-    if (iframe) iframe.style.display = 'none';
-    if (img) img.style.display = 'none';
+    if (iframe) { iframe.style.display = 'none'; }
+    if (img)    { img.style.display    = 'none'; }
 
     if (workType === '글') {
-      // 글: iframe만, Textlink로 교체 주입
+      // 글: iframe만 보이기 (시트 Textlink로 강제 세팅, 크기 80%)
+      const textlink = toEmbedded(textlink0);
       if (iframe) {
-        iframe.src = textlink || '';        // 시트 Textlink 강제 적용
+        iframe.src = textlink || '';
         iframe.style.display = textlink ? 'block' : 'none';
+        iframe.setAttribute('width',  '80%');
+        iframe.setAttribute('height', '80%');
+        iframe.style.border = '0';
       }
-      if (img) img.style.display = 'none';  // 이미지 숨김
+      // 썸네일 이미지는 프로필 뷰에서는 숨김
+      if (img) {
+        img.style.display = 'none';
+        // 필요하면 확실히 막기 위해 src까지 비우기
+        // img.src = '';
+      }
     } else {
-      // 글 이외: iframe 확실히 숨기고 src 비워 플레이스홀더 차단
-      if (iframe) {
-        iframe.src = '';
-        iframe.style.display = 'none';
-      }
-      // 이미지가 있으면 표시
+      // 글 이외: 이미지만 보이기, iframe은 확실히 숨기고 src 비움(플레이스홀더 차단)
+      if (iframe) { iframe.src = ''; iframe.style.display = 'none'; }
       if (img && img.src && img.src.trim() !== '') {
         img.style.display = 'block';
       }
