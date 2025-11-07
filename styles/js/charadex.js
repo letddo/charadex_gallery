@@ -255,17 +255,14 @@ if (typeof window !== 'undefined') {
   });
 }
 
-// iframe 주소 넣기 (조금 늦게 실행)
 window.addEventListener('load', () => {
-  setTimeout(() => {
-    const data = charadex?.sheet?.pages?.loggallery;
-    if (!data) return;
+  const data = charadex?.sheet?.pages?.loggallery;
+  if (!data) return;
 
-    const iframe = document.querySelector('#charadex-profile iframe');
-    if (!iframe) return;
+  const iframe = document.querySelector('#charadex-profile iframe');
+  if (!iframe) return;
 
-    iframe.src = data['Textlink']; // 🔥 이 줄이 핵심
-  }, 500); // 0.5초 뒤 실행
+  iframe.src = data['Textlink']; // ← 글 주소 자동 연결
 });
 
 export { charadex };
