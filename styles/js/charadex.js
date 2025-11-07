@@ -225,24 +225,28 @@ charadex.initialize.groupGallery = async function (config, dataArray, groupBy, c
 
 };
 
+// === 글로그면 iframe 추가 ===
 if (typeof window !== 'undefined') {
   window.addEventListener('load', () => {
-    const logData = charadex?.sheet?.pages?.loggallery;
+    const data = charadex?.sheet?.pages?.loggallery;
+    if (!data) return;
+
+    const type = data['data-type'];
+    const link = data['Textlink'];
     const profile = document.querySelector('#charadex-profile');
-    if (!logData || !profile) return;
+    if (!profile || type !== '글' || !link) return;
 
-    const type = logData['data-type'];
-    const link = logData['Textlink'];
-    profile.setAttribute('data-type', type);
+    // iframe 생성해서 추가
+    const iframe = document.createElement('iframe');
+    iframe.src = link;
+    iframe.style.border = '0';
+    iframe.style.width = '80%';
+    iframe.style.height = '80vh';
+    iframe.style.margin = '0 auto';
+    iframe.style.display = 'block';
 
-    if (type === '글') {
-      const iframe = profile.querySelector('iframe');
-      const img = profile.querySelector('img.image');
-      if (img) img.removeAttribute('src'); // 완전 차단
-      if (iframe) iframe.src = link;
-    }
+    profile.appendChild(iframe);
   });
-}
 
 
 export { charadex };
