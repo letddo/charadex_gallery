@@ -229,7 +229,6 @@ charadex.initialize.groupGallery = async function (config, dataArray, groupBy, c
 
   /* 글 그림 분리
   ======================================================================= */
-<script>
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.cd-loggallery-image-container').forEach(function (el) {
     const type = el.dataset.type;
@@ -247,7 +246,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
-</script>
 
 
 export { charadex };
