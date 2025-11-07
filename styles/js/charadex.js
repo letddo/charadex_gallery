@@ -225,7 +225,7 @@ charadex.initialize.groupGallery = async function (config, dataArray, groupBy, c
 
 };
 
-// === 글로그면 iframe만 on ===
+// === 글이면 이미지+iframe, 그림이면 이미지만 ===
 if (typeof window !== 'undefined') {
   window.addEventListener('load', () => {
     const data = charadex?.sheet?.pages?.loggallery;
@@ -236,17 +236,24 @@ if (typeof window !== 'undefined') {
     const profile = document.querySelector('#charadex-profile');
     if (!profile) return;
 
-    // CSS가 작동하도록 data-type 부여
     profile.setAttribute('data-type', type);
 
-    // 글이면 iframe 세팅
+    // iframe 요소 찾기
+    const iframe = profile.querySelector('iframe');
+    if (!iframe) return;
+
+    // 타입별 표시
     if (type === '글') {
-      const iframe = profile.querySelector('iframe');
-      if (iframe && link) iframe.src = link;
+      // 글 → iframe도 보이게 + 링크 세팅
+      iframe.src = link;
+      iframe.style.display = 'block';
+    } else {
+      // 그림 → iframe 숨김
+      iframe.removeAttribute('src');
+      iframe.style.display = 'none';
     }
   });
 }
-
 
 export { charadex };
 
