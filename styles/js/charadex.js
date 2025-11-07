@@ -226,11 +226,24 @@ charadex.initialize.groupGallery = async function (config, dataArray, groupBy, c
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (charadex.sheet.pages.loggallery['data-type'] === '글') {
-    const profile = document.querySelector('#charadex-profile');
-    if (profile) {
-      profile.setAttribute('data-type', '글');
+  const isText = charadex.sheet.pages.loggallery['data-type'] === '글';
+  const prof = document.querySelector('#charadex-profile');
+  const img  = prof.querySelector('img.image');
+  const ifr  = prof.querySelector('iframe');
+
+  if (isText) {
+    // 이미지가 다시 살아나는 걸 막기 위해 src/srcset 제거 + !important 숨김
+    if (img) { img.removeAttribute('src'); img.removeAttribute('srcset'); img.style.display = 'none'; }
+    if (!document.getElementById('cd-kill-img')) {
+      const s = document.createElement('style');
+      s.id = 'cd-kill-img';
+      s.textContent = '#charadex-profile img.image{display:none!important}';
+      document.head.appendChild(s);
     }
+    if (ifr) { ifr.src = charadex.sheet.pages.loggallery.Textlink || ''; ifr.style.display = 'block'; }
+  } else {
+    if (ifr) { ifr.removeAttribute('src'); ifr.style.display = 'none'; }
+    if (img) { img.src = charadex.sheet.pages.loggallery.Image || img.src; img.style.display = 'block'; }
   }
 });
 
