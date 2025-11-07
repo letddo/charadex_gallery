@@ -14,9 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     charadex.page.masterlist,
     null, 
     async (listData) => {
-
       if (listData.type == 'profile') {
-
         // Create the log dex
         if (charadex.tools.checkArray(listData.profileArray[0]['마스터리스트내역'])) {
           let logs = await charadex.initialize.page(

@@ -215,7 +215,7 @@ charadex.page.loggallery = {
   sheetPage: charadex.sheet.pages.loggallery,
   sitePage: 'loggallery',
   dexSelector: 'charadex',
-  profileProperty: '갤러리',
+  profileProperty: '제목',
 
   sort: {
     toggle: true,

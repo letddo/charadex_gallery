@@ -64,7 +64,7 @@
   <-- Main List
   <-------------------------------------------------------------------- -->
   <div class="container" id="main-container">
-    <div id="charadex-loggallery">
+    <div id="charadex-gallery">
 
       <!-- Top Card Container
       <!-- ----------------------------------------------------------------- -->
@@ -177,13 +177,13 @@
 
     <!-- Gallery Items
     <!-- --------------------------------------------------------------- -->
-    <div class="col-lg-3 col-sm-6 p-2" id="charadex-loggallery-item">
+    <div class="col-lg-3 col-sm-6 p-2" id="charadex-gallery-item">
       <div class="card h-100">
 
         <!-- Header -->
         <div class="card-header text-center">
           <h5 class="mb-0">
-            <a class="loggalleryid loggallerylink" href=""></a>
+            <a class="제목 profilelink" href=""></a>
           </h5>
         </div>
 
@@ -194,7 +194,7 @@
 
         <!-- Owner -->
         <div class="card-footer text-center">
-          <a class="소유자 ownerlink small" href=""></a>
+          작성자 <a class="작성자 ownerlink small" href=""></a>
         </div>
 
       </div>
@@ -203,12 +203,12 @@
 
     <!-- Gallery Profile
     <!-- --------------------------------------------------------------- -->
-    <div class="col-12 p-2" id="charadex-loggallery">
+    <div class="col-12 p-2" id="charadex-profile">
       <div class="card">
 
         <!-- Header -->
         <div class="card-header p-4 text-center">
-          <h3 class="mb-0 pr-2"><a class="loggallerylink loggalleryid"></a></h3> 
+          <h3 class="mb-0 pr-2"><a class="profilelink profileid"></a></h3> 
           <div class="text-muted">(#<span class="id"></span>)</div>
         </div>
 
@@ -224,8 +224,8 @@
 
           <!-- Main Profile
           <!-- ----------------------------------------------------------- -->
-          <div class="tab-pane fade active show" id="loggallery" role="tabpanel" aria-labelledby="loggallery-tab" tabindex="0">
-            <h4 class="text-primary">내용</h4>
+          <div class="tab-pane fade active show" id="profile" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+            <h4 class="text-primary">정보</h4>
             <div class="row no-gutters m-n2">
 
               <div class="col-md-6 p-2">
@@ -233,28 +233,22 @@
 
                   <!-- Item -->
                   <div class="d-flex no-gutters mb-2">
-                    <b class="text-muted col-md-5 col-6">종족</b>
-                    <span class="species"></span>
+                    <b class="text-muted col-md-5 col-6">작품 유형</b>
+                    <span class="작품유형"></span>
                   </div>
     
                   <!-- Item -->
                   <div class="d-flex no-gutters mb-2">
-                    <b class="text-muted col-md-5 col-6">등급</b>
-                    <span class="등급"></span>
+                    <b class="text-muted col-md-5 col-6">프롬프트</b>
+                    <span class="프롬프트"></span>
                   </div>
-    
-                  <!-- Item -->
-                  <div class="d-flex no-gutters mb-2">
-                    <b class="text-muted col-md-5 col-6">디자인 타입</b>
-                    <span class="디자인타입"></span>
-                  </div>
-                  
+     
                   <hr>
 
                   <!-- Item -->
                   <div>
-                    <b class="text-muted">특성</b>
-                    <div class="px-4 cd-text-pre 특성 cd-traits-scroll"></div>
+                    <b class="text-muted">등장 캐릭터</b>
+                    <div class="px-4 cd-text-pre 등장 캐릭터 cd-traits-scroll"></div>
                   </div>
 
                 </div>
@@ -265,8 +259,8 @@
 
                   <!-- Item -->
                   <div class="d-flex no-gutters mb-2">
-                    <b class="text-muted col-md-5 col-6">소유자</b>
-                    <a class="소유자 ownerlink"></a>
+                    <b class="text-muted col-md-5 col-6">작성자</b>
+                    <a class="작성자 ownerlink"></a>
                   </div>
     
                   <!-- Item -->
@@ -277,30 +271,16 @@
     
                   <!-- Item -->
                   <div class="d-flex no-gutters mb-2">
-                    <b class="text-muted col-md-5 col-6">디자인</b>
-                    <a class="디자인 designerlink"></a>
-                  </div>
-
-                  <hr>
-    
-                  <!-- Item -->
-                  <div class="d-flex no-gutters mb-2">
-                    <b class="text-muted col-md-5 col-6">가치</b>
-                    <span><span class="가치"></span>₩</span>
-                  </div>
-    
-                  <!-- Item -->
-                  <div class="d-flex no-gutters mb-2">
-                    <b class="text-muted col-md-5 col-6">상태</b>
-                    <span class="상태"></span>
+                    <b class="text-muted col-md-5 col-6">협업자</b>
+                    <a class="협업자 cd-traits-scroll"></a>
                   </div>
 
                   <hr>
                   
                   <!-- Item -->
                   <div>
-                    <b class="text-muted">정보</b>
-                    <div class="px-4 cd-text-pre 정보"></div>
+                    <b class="text-muted">설명</b>
+                    <div class="px-4 cd-text-pre 설명"></div>
                   </div>
 
                 </div>
