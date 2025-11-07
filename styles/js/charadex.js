@@ -223,21 +223,5 @@ charadex.initialize.groupGallery = async function (config, dataArray, groupBy, c
 
   return handleGallery();
 
-  
-if (typeof window !== 'undefined') {
-  document.addEventListener('DOMContentLoaded', () => {
-    const type = charadex.sheet.pages.loggallery['data-type'];
-    const profile = document.querySelector('#charadex-profile');
-
-    if (profile) profile.setAttribute('data-type', type);
-
-    const iframe = profile?.querySelector('iframe');
-    if (type === '글' && iframe) {
-      iframe.src = charadex.sheet.pages.loggallery.Textlink;
-    }
-  });
-}
-
-
 export { charadex };
 
