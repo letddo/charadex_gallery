@@ -707,7 +707,7 @@ p:last-child {
 
   /* 글이면 이미지 강제 숨김 */
   #charadex-profile[data-type="글"] img.image {
-    display:block!important;
+    display: none !important;
   }
   /* 글이 아닐 때 iframe 숨김 */
   #charadex-profile:not([data-type="글"]) iframe {
