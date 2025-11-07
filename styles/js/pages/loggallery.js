@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     charadex.page.loggallery,
     null, 
     async (listData) => {
-      console.log(listData);
 
     }
   );
