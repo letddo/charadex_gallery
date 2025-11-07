@@ -237,32 +237,42 @@ window.addEventListener('load', () => {
 });
 
 
-// === 글이면 이미지+iframe, 그림이면 이미지만 ===
-if (typeof window !== 'undefined') {
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      // 현재 표시 중인 실제 데이터
-      const data = window.charadexCurrentData;
-      const profile = document.querySelector('#charadex-profile');
-      if (!data || !profile) return;
+// 글이면 이미지+iframe, 그림이면 이미지만 (DOM 기반)
+window.addEventListener('load', () => {
+  const profile = document.querySelector('#charadex-profile');
+  if (!profile) return;
 
-      const type = data['data-type'];
-      const link = data['Textlink'];
-      const iframe = profile.querySelector('iframe');
-      if (!iframe) return;
+  // 렌더 완료된 프로필의 "작품 유형" 값을 그대로 읽음
+  const typeTxt = (profile.querySelector('.data-type')?.textContent || '').trim();
+  if (!typeTxt) return;                      // 아직 렌더 전이면 패스
+  profile.setAttribute('data-type', typeTxt); // CSS 조건용
 
-      profile.setAttribute('data-type', type);
+  const iframe = profile.querySelector('iframe');
+  const img    = profile.querySelector('img.image');
 
-      if (type === '글' && link) {
-        iframe.src = link;
-        iframe.style.display = 'block';
-      } else {
-        iframe.src = '';
-        iframe.style.display = 'none';
-      }
-    }, 500);
-  });
-}
+  if (typeTxt === '글') {
+    // 가능한 링크 후보를 간단히 확보: (이미 들어있으면 그대로 사용)
+    let link = (iframe?.getAttribute('src') || '').trim();
+    // window.charadexCurrentData에 Textlink가 있으면 우선 사용
+    if (window.charadexCurrentData?.Textlink) link = window.charadexCurrentData.Textlink.trim();
+
+    // Google Docs는 임베드형으로 보정
+    if (link.includes('docs.google.com') && link.includes('/edit')) {
+      link = link.replace('/edit', '/preview');
+      if (!link.includes('embedded=true')) link += (link.includes('?') ? '&' : '?') + 'embedded=true';
+    }
+
+    if (iframe && link) {
+      iframe.src = link;
+      iframe.style.display = 'block';
+    }
+    if (img) img.style.display = '';   // 글일 땐 이미지도 함께 보이게 (요구사항)
+  } else {
+    // 글이 아니면 iframe은 확실히 숨김
+    if (iframe) { iframe.removeAttribute('src'); iframe.style.display = 'none'; }
+    // 이미지는 그대로
+  }
+});
 
 export { charadex };
 
