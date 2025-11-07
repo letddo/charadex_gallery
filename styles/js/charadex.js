@@ -223,18 +223,20 @@ charadex.initialize.groupGallery = async function (config, dataArray, groupBy, c
 
   return handleGallery();
 
-};
-
+  
 document.addEventListener('DOMContentLoaded', () => {
-  if (charadex.sheet.pages.loggallery['data-type'] === '글') {
-    const profile = document.querySelector('#charadex-profile');
-    if (profile) {
-      profile.setAttribute('data-type', '글');
-    }
+  const type = charadex.sheet.pages.loggallery['data-type'];
+  const profile = document.querySelector('#charadex-profile');
+
+  if (profile) {
+    profile.setAttribute('data-type', type); // 이거 꼭 필요!
+  }
+
+  const iframe = profile?.querySelector('iframe');
+  if (type === '글' && iframe) {
+    iframe.src = charadex.sheet.pages.loggallery.Textlink;
   }
 });
-
-
 
 
 export { charadex };
