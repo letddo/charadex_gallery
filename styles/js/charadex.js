@@ -248,4 +248,4 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-export { charadex };
+<script type="module" src="charadex.js"></script>
