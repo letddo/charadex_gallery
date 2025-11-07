@@ -225,12 +225,24 @@ charadex.initialize.groupGallery = async function (config, dataArray, groupBy, c
 
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
+if (typeof window !== 'undefined') {
+  window.addEventListener('load', () => {
     const logData = charadex?.sheet?.pages?.loggallery;
     const profile = document.querySelector('#charadex-profile');
-    if (logData && profile) profile.setAttribute('data-type', logData['data-type']);
-  }, 800);
+    if (!logData || !profile) return;
+
+    const type = logData['data-type'];
+    const link = logData['Textlink'];
+    profile.setAttribute('data-type', type);
+
+    if (type === '글') {
+      const iframe = profile.querySelector('iframe');
+      const img = profile.querySelector('img.image');
+      if (img) img.removeAttribute('src'); // 완전 차단
+      if (iframe) iframe.src = link;
+    }
+  });
+}
 
 
 export { charadex };
