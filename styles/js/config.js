@@ -16,7 +16,7 @@ let charadex = {};
 /* ==================================================================== */
 charadex.site = {
   title: "Test",
-  url: "https://m4ch1n4097.github.io/charadex_gallery",
+  url: "https://letddo.github.io/charadex_gallery",
   description: `A tool for organizing small ARPGs and species.`
 }
 
@@ -26,7 +26,7 @@ charadex.site = {
 /* ==================================================================== */
 charadex.sheet = {
 
-  id: "1YjbqDdOLMETABHY9u3e5FdKkQuP3uN6JAdrY1AhZs2c",
+  id: "1lTsxDEMdFKYmefW-shA_G5ye9tC-0Snyj2lmvXRcx8E",
 
   pages: {
     masterlist:    "마스터리스트",
